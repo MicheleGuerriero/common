@@ -1,0 +1,12 @@
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/PastCondition.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/Field.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/VariableType.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/GeneralizationVector.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/ContextualCondition.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/VCP.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/RelationalOperator.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/PrivacyContext.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/ApplicationDataStream.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/PrivacyPolicy.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/DSEP.java
+/home/utente/eclipse-workspace/common/src/main/java/it/deib/polimi/diaprivacy/model/ApplicationPrivacy.java

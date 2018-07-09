@@ -1,0 +1,12 @@
+it/deib/polimi/diaprivacy/model/PrivacyContext.class
+it/deib/polimi/diaprivacy/model/RelationalOperator.class
+it/deib/polimi/diaprivacy/model/ApplicationPrivacy.class
+it/deib/polimi/diaprivacy/model/DSEP.class
+it/deib/polimi/diaprivacy/model/VariableType.class
+it/deib/polimi/diaprivacy/model/ApplicationDataStream.class
+it/deib/polimi/diaprivacy/model/PrivacyPolicy.class
+it/deib/polimi/diaprivacy/model/VCP.class
+it/deib/polimi/diaprivacy/model/ContextualCondition.class
+it/deib/polimi/diaprivacy/model/GeneralizationVector.class
+it/deib/polimi/diaprivacy/model/PastCondition.class
+it/deib/polimi/diaprivacy/model/Field.class
