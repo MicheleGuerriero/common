@@ -47,6 +47,16 @@ public class ApplicationPrivacy {
 		return toReturn;
 	}
 	
+	public List<String> getApplicationStreamsNames(){
+		List<String> toReturn = new ArrayList<String>();
+		
+		for(ApplicationDataStream s: policiesPerStream.keySet()) {
+			toReturn.add(s.id);
+		}
+		
+		return toReturn;
+	}
+	
 	public ApplicationDataStream getStreamByID(String stream) {
 		for(ApplicationDataStream s: this.policiesPerStream.keySet()) {
 			if(s.getId().equals(stream))

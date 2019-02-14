@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.apache.flink.streaming.api.datastream.DataStream;
 
-import scala.sys.process.ProcessBuilderImpl.Simple;
-
 public abstract class PrivacyPolicy {
 
 	private List<ContextualCondition> simpleConditions;
@@ -44,7 +42,7 @@ public abstract class PrivacyPolicy {
 
 	public Map<DataStream<?>, PastCondition> getSubjectSpecificPastConditions(ApplicationPrivacy app) {
 		Map<DataStream<?>, PastCondition> toReturn = new HashMap<DataStream<?>, PastCondition>();
-		for (PastCondition pc : this.pastConditions) {
+		for (PastCondition pc : this.getPastConditions()) {
 			if (app.getStreamByID(pc.getContainerStreamId()).getIsSubjectSpecific()) {
 				toReturn.put(app.getStreamByID(pc.getContainerStreamId()).concreteStream, pc);
 			}
@@ -54,7 +52,7 @@ public abstract class PrivacyPolicy {
 
 	public Map<DataStream<?>, PastCondition> getGenericPastConditions(ApplicationPrivacy app) {
 		Map<DataStream<?>, PastCondition> toReturn = new HashMap<DataStream<?>, PastCondition>();
-		for (PastCondition pc : this.pastConditions) {
+		for (PastCondition pc : this.getPastConditions()) {
 			if (!app.getStreamByID(pc.getContainerStreamId()).getIsSubjectSpecific()) {
 				toReturn.put(app.getStreamByID(pc.getContainerStreamId()).concreteStream, pc);
 			}
@@ -62,10 +60,10 @@ public abstract class PrivacyPolicy {
 		return toReturn;
 	}
 
-	public Map<DataStream<?>, ContextualCondition> getSubjectSpecificStaticConditions(ApplicationPrivacy app) {
+	public Map<DataStream<?>, ContextualCondition> getSubjectSpecificStaticConditions(ApplicationPrivacy app, ApplicationDataStream protectedStream) {
 		Map<DataStream<?>, ContextualCondition> toReturn = new HashMap<DataStream<?>, ContextualCondition>();
-		for (ContextualCondition c : this.simpleConditions) {
-			if (app.getStreamByID(c.getContainerStreamId()).getIsSubjectSpecific()) {
+		for (ContextualCondition c : this.getSimpleConditions()) {
+			if (app.getStreamByID(c.getContainerStreamId()).getIsSubjectSpecific() && !app.getStreamByID(c.getContainerStreamId()).getId().equals(protectedStream.getId())) {
 				toReturn.put(app.getStreamByID(c.getContainerStreamId()).concreteStream, c);
 			}
 		}
@@ -73,10 +71,10 @@ public abstract class PrivacyPolicy {
 
 	}
 
-	public Map<DataStream<?>, ContextualCondition> getGenericStaticConditions(ApplicationPrivacy app) {
+	public Map<DataStream<?>, ContextualCondition> getGenericStaticConditions(ApplicationPrivacy app, ApplicationDataStream protectedStream) {
 		Map<DataStream<?>, ContextualCondition> toReturn = new HashMap<DataStream<?>, ContextualCondition>();
-		for (ContextualCondition c : this.simpleConditions) {
-			if (!app.getStreamByID(c.getContainerStreamId()).getIsSubjectSpecific()) {
+		for (ContextualCondition c : this.getSimpleConditions()) {
+			if (!app.getStreamByID(c.getContainerStreamId()).getIsSubjectSpecific() && !app.getStreamByID(c.getContainerStreamId()).getId().equals(protectedStream.getId())) {
 				toReturn.put(app.getStreamByID(c.getContainerStreamId()).concreteStream, c);
 			}
 		}
@@ -85,7 +83,7 @@ public abstract class PrivacyPolicy {
 
 	public List<ContextualCondition> getProtectedStreamConds(ApplicationPrivacy app, ApplicationDataStream protectedStream) {
 		List<ContextualCondition> toReturn = new ArrayList<ContextualCondition>();
-		for (ContextualCondition c : this.simpleConditions) {
+		for (ContextualCondition c : this.getSimpleConditions()) {
 			if (app.getStreamByID(c.getContainerStreamId()).getId().equals(protectedStream.getId())) {
 				toReturn.add(c);
 			}
